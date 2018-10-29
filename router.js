@@ -7,6 +7,7 @@ const router = new Router();
 const frontViews = views(path.join(__dirname,"/client/front/views"), { map: {html: 'handlebars' }});
 const backViews = views(path.join(__dirname,"/client/back/views"), { map: {html: 'handlebars' }});
 
+
 /**
  * 视图中间件
  */

@@ -1,5 +1,5 @@
 global.appRoot = __dirname;
-global.port = '3000';
+global.port = '5555';
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const conditional = require('koa-conditional-get');
@@ -8,8 +8,14 @@ const serverHelper = require('./common/helpers/serverHelper');
 const logger = require('./common/helpers/logger/index');
 const staticServer = require('./common/helpers/staticServer/index');
 const router = require('./router');
+const session = require('koa-session');
+const sessionConfig = require('./common/configs/sessionConfig');
 
 const app = new Koa();
+
+app.keys = ['dmt2017'];
+app.use(session(sessionConfig,app));
+
 
 //控制台日志中间件
 app.use(logger('dev'));

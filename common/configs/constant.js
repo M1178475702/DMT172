@@ -1,6 +1,4 @@
-/**
- * @name 服务器常量
- */
+//服务器常量
 
 module.exports = {
     API_RESULT_MODEL: {

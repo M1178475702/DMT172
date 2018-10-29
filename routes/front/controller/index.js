@@ -11,4 +11,6 @@ module.exports = router.routes();
 
 serverHelper.assemble({},__dirname,basename,(frontControlRouter)=> {
     router.use('/homePage',frontControlRouter['homePage']);
+
+    router.use('/auth',frontControlRouter['auth']);
 });
