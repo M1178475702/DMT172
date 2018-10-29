@@ -12,3 +12,9 @@ router.get(['/','/index'],async (ctx,next)=> {
         title:'首页'
     })
 });
+router.get('/list',async (ctx,next)=> {
+    await ctx.render('list',{
+        layout:null,
+        title:'表单列表'
+    })
+});
