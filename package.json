@@ -24,6 +24,7 @@
     "passthrough-counter": "latest",
     "sequelize": "^4.39.0",
     "string-width": "^2.1.1",
-    "koa-session": "^5.10.0"
+    "koa-session": "^5.10.0",
+    "xlsx": "^0.14.0"
   }
 }
