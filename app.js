@@ -9,7 +9,7 @@ const logger = require('./common/helpers/logger/index');
 const staticServer = require('./common/helpers/staticServer/index');
 const router = require('./router');
 const session = require('koa-session');
-const sessionConfig = require('./common/configs/sessionConfig');
+const sessionConfig = require('./common/configs/session-config');
 
 const app = new Koa();
 

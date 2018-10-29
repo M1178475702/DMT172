@@ -1,5 +1,4 @@
 const path = require('path');
-
 const Models = require(path.join(appRoot, '/models/index'));
 const sequelize = Models.sequelize;
 const Constant = require(path.join(appRoot, '/common/configs/constant'));
@@ -19,10 +18,12 @@ module.exports = {
             };
             const userObj = await Models.stuUser.findOne(searchObj);
             if (userObj) {
-                console.log(userObj);
                 ctx.session.userId = userObj.userId;
                 ctx.session.stuNo = userObj.stuNo;
                 ctx.session.stuName = userObj.stuName;
+                body.data = {
+                    stuName:userObj.stuName
+                };
                 body.prompt = '操作成功';
                 body.retCode = Constant.API_SUCCEED_CODE;
                 ctx.body = body;
