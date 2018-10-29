@@ -1,19 +1,19 @@
 global.appRoot = __dirname;
 global.port = '5555';
 const Koa = require('koa');
+const session = require('koa-session');
+const router = require('./router');
 const bodyParser = require('koa-bodyparser');
-const conditional = require('koa-conditional-get');
 const etag = require('koa-etag');
+const conditional = require('koa-conditional-get');
 const serverHelper = require('./common/helpers/serverHelper');
 const logger = require('./common/helpers/logger/index');
 const staticServer = require('./common/helpers/staticServer/index');
-const router = require('./router');
-const session = require('koa-session');
 const sessionConfig = require('./common/configs/session-config');
 
 const app = new Koa();
 
-app.keys = ['dmt2017'];
+app.keys = ['DMT172'];
 app.use(session(sessionConfig,app));
 
 

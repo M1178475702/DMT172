@@ -3,7 +3,6 @@ const Models = require(path.join(appRoot, '/models/index'));
 const sequelize = Models.sequelize;
 const Constant = require(path.join(appRoot, '/common/configs/constant'));
 
-
 module.exports = {
     login: async (ctx, next) => {
         try {

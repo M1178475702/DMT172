@@ -87,3 +87,10 @@ exports.widthString = function widthString(strArr, width) {
     else
         throw new Error('无效宽度!');
 };
+
+exports.loginAuth = async (ctx,next)=>{
+    const session = ctx.session;
+    if(session.userId||ctx.url === "/front/" ||ctx.url === "/front/index"||ctx.url === "/front/api/auth/login")
+        return next();
+    ctx.redirect("/front/");
+};

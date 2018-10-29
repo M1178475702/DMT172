@@ -15,6 +15,7 @@ const backViews = views(path.join(__dirname,"/client/back/views"), { map: {html:
 router.use('/back',backViews);
 router.use('/front',frontViews);
 
+
 /**
  *
  */
