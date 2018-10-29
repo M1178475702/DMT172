@@ -16,7 +16,7 @@ module.exports = {
                 attributes:['formId','formName',[Sequelize.fn("DATE_FORMAT", Sequelize.col('begin_time'), '%Y/%c/%d %H:%i:%s'), 'beginTime'],
                     [Sequelize.fn("DATE_FORMAT", Sequelize.col('end_time'), '%Y/%c/%d %H:%i:%s'), 'endTime'],'formStatus'],
                 raw:true,
-                order:[['beginTime','ASC']]
+                order:[['beginTime','DESC']]
             };
             body.data.formList  = await Models.stuForm.findAll(searchObj);
             body.prompt = "操作成功";
