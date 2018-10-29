@@ -54,11 +54,11 @@ new Vue({
                 headers: {'Content-Type': 'application/json'},
                 success: function (resData) {
                     if (resData.retCode === API_SUCCEED_CODE) {
-                        sessionStorage.stuName=resData.data.stuName;
+                        sessionStorage.stuName = resData.data.stuName;
                         location.replace('/front/list');
                     }
                     else {
-alert("登陆失败")
+                        alert("登陆失败")
                     }
                 },
                 error: function (xhr, errorType, error) {

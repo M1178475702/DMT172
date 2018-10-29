@@ -29,8 +29,10 @@ new Vue({
                 }
 
             })
+        },
+        fillList: function (num) {
+            location.replace('/ront/details?formId=' + num);
         }
-
     }
 });
-// document.write("<p style='color: red'>hi</p>");
+document.write("Hi," + "<span style='color: #409EFF'>" + sessionStorage.stuName + "</span>" + "同学请尽快填写表格！！！");

@@ -17,16 +17,16 @@
         <el-table-column
                 prop="formId"
                 label="序号"
-                width="180">
+                width="100%">
         </el-table-column>
         <el-table-column
                 prop="formName"
                 label="名称"
-                width="250">
+                width="300%">
         </el-table-column>
         <el-table-column
                 label="开始时间"
-                width="300">
+                width="300%">
             <template slot-scope="scope">
                 <i class="el-icon-time"></i>
                 <span style="margin-left: 10px">${ scope.row.beginTime }</span>
@@ -34,7 +34,7 @@
         </el-table-column>
         <el-table-column
                 label="结束时间"
-                width="300">
+                width="300%">
             <template slot-scope="scope">
                 <i class="el-icon-time"></i>
                 <span style="margin-left: 10px">${scope.row.endTime}</span>
@@ -45,10 +45,10 @@
         >
             <template slot-scope="scope">
                 <div v-if="scope.row.formStatus===1">
-                    <el-button type="primary" round>填写</el-button>
+                    <el-button type="primary" round @click="fillList(scope.row.formId)">填写</el-button>
                 </div>
                 <div v-else>
-                    <el-button type="danger"round>禁用</el-button>
+                    <el-button type="danger" round>禁用</el-button>
                 </div>
             </template>
         </el-table-column>
