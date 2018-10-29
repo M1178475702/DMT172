@@ -13,4 +13,6 @@ serverHelper.assemble({},__dirname,basename,(frontControlRouter)=> {
     router.use('/homePage',frontControlRouter['homePage']);
 
     router.use('/auth',frontControlRouter['auth']);
+
+    router.use('/form',frontControlRouter['form']);
 });
