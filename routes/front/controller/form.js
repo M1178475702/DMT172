@@ -5,4 +5,4 @@ module.exports =  router.routes();
 
 router.get('/getFormList',form.getFormList);
 
-router.get('/generateForm',form.generateForm);
+router.get('/getUserForm',form.getUserForm);

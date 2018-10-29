@@ -29,10 +29,10 @@ module.exports = {
         }
     },
 
-    generateForm: async (ctx, next) => {
+    getUserForm: async (ctx, next) => {
         try {
             const body = JSON.parse(JSON.stringify(Constant.API_RESULT_MODEL));
-            let {formId} = ctx.request.body;
+            let {formId} = ctx.request.query;
             let searchObj = {
                 where: {
                     formId:formId
