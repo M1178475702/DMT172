@@ -11,7 +11,6 @@ module.exports = {
     getFormList : async (ctx,next)=>{
         try{
             const body = JSON.parse(JSON.stringify(Constant.API_RESULT_MODEL));
-
             let searchObj = {
                 attributes:['formId','formName',[Sequelize.fn("DATE_FORMAT", Sequelize.col('begin_time'), '%Y/%c/%d %H:%i:%s'), 'beginTime'],
                     [Sequelize.fn("DATE_FORMAT", Sequelize.col('end_time'), '%Y/%c/%d %H:%i:%s'), 'endTime'],'formStatus'],
@@ -50,7 +49,7 @@ module.exports = {
             const transcriptData = xl.utils.sheet_to_json(worksheet);
             let columnList = Object.keys(transcriptData[0]);
             if(columnList.length){
-                body.columnList = columnList;
+                body.data.columnList = columnList;
                 body.prompt = "操作成功";
                 body.retCode = Constant.API_SUCCEED_CODE;
                 ctx.body = body;

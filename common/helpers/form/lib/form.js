@@ -1,22 +1,20 @@
 class Form {
 
-    #name;
-    #data;
     constructor(formName) {
-        #name = formName;
-        #data = [];
+       this.name = formName;
+       this.data = [];
     }
-
-    get size(){
-        return data.length;
-    }
-
-    get data(){
-        return data;
-    }
-
     push(val){
-        let stu
+        let stuNo = val.stuNo;
+        for(let item of data)
+        {
+            if(item.stuNo === stuNo)
+            {
+                item = val;
+                return 0;
+            }
+        }
+        data.push(item);
     }
 
 
