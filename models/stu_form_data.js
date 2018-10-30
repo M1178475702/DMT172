@@ -23,6 +23,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(500),
       allowNull: false,
       field: 'data_content'
+    },
+    putTime: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: 'put_time'
     }
   }, {
     tableName: 'stu_form_data'
