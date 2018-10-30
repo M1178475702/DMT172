@@ -55,7 +55,7 @@ module.exports = {
             }
             else {
                 body.prompt = "表单解析错误";
-                body.retCode = Constant.API_SUCCEED_CODE;
+                body.retCode = Constant.API_DATA_WRONG_CODE;
                 ctx.body = body;
             }
         }
@@ -93,10 +93,10 @@ module.exports = {
                         dataContent: dataContent
                     };
                     await Models.stuFormData.create(createObj);
-                    body.prompt = "操作成功";
-                    body.retCode = Constant.API_SUCCEED_CODE;
-                    ctx.body = body;
                 }
+                body.prompt = "操作成功";
+                body.retCode = Constant.API_SUCCEED_CODE;
+                ctx.body = body;
             })
         }
         catch (e) {

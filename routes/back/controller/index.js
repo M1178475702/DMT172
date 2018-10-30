@@ -11,5 +11,5 @@ const backControlRouter  = {};
 module.exports = router.routes();
 
 serverHelper.assemble(backControlRouter,__dirname,basename,function (backControlRouter) {
-
+    router.use('/form',backControlRouter['form']);
 });
