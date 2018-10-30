@@ -56,9 +56,13 @@ new Vue({
         },
         submitForm(formName) {
             var that = this;
+            var formId = dt.getQueryString("formId");
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    var data = that.ruleForm;
+                    var data = {
+                        "formId": formId,
+                        "dataContent": JSON.stringify(that.ruleForm)
+                    }
                     $.ajax({
                         type: 'Post',
                         url: FRONT_URL + "/form/putFormData",
