@@ -24,3 +24,9 @@ router.get('/details', async (ctx, next) => {
         title: '表单详情'
     })
 });
+router.get('/table', async (ctx, next) => {
+    await ctx.render('table', {
+        layout: null,
+        title: '表单详情'
+    })
+});

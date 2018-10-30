@@ -9,20 +9,18 @@
 </head>
 <body>
 <div id="details" v-cloak>
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <!--<div v-for="(item,index) in formTable">-->
-        <!--<el-form-item label="123" prop="tableContent">-->
-        <!--<el-input v-model="formTable.index"></el-input>-->
-        <!--</el-form-item>-->
-        <!--</div>-->
-        <form-table v-for="item in ruleForm.tables" :key="item.id" :list="item" >
-
-        </form-table>
-        <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
-        </el-form-item>
-    </el-form>
+    <el-row>
+        <el-col :sm="{span:16,offset:4}" :lg="{span:12,offset:6}">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="20%" class="demo-ruleForm">
+                <form-table v-for="item in formTable" :key="item.id" :list="item" :tables="ruleForm">
+                </form-table>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+                    <el-button @click="resetForm('ruleForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-col>
+    </el-row>
 </div>
 <script src="/public/vendors/jQuery/jquery-3.3.1.min.js"></script>
 <script src="/public/vendors/less/less-3.8.1.js"></script>

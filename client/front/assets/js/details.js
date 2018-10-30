@@ -1,22 +1,22 @@
 Vue.component('form-table', {
-    props: ['list'],
+    props: ['list', 'tables'],
     template:
         ' <el-form-item :label="list.cellName" prop="tableContent">' +
-        '        <el-input v-model="list.value"></el-input>\n' +
-        '        </el-form-item> '
+        ' <el-input v-model="tables[list.cellName]" ></el-input>\n' +
+        ' </el-form-item> '
 });
 new Vue({
     el: "#details",
     delimiter: ['${', '}'],
     data() {
         return {
-            formTable: {},
-            ruleForm:{tables:[]},
+            formTable: [],
+            ruleForm: {},
             rules: {
                 tableContent: [
                     {required: false, message: '请输入内容', trigger: 'blur'},
-                    {min: 0, max: 50, message: '长度在 0 到 50 个字符', trigger: 'blur'}
-                ],
+                    {min: 0, max: 3, message: '长度在 0 到 50 个字符', trigger: 'blur'}
+                ]
             }
         }
     },
@@ -34,17 +34,16 @@ new Vue({
                 headers: {'Content-Type': 'application/json'},
                 success: function (resData) {
                     if (resData.retCode === API_SUCCEED_CODE) {
-                        var list=resData.data.columnList;
-                        var newList=[];
-                        for (var i=0;i<list.length;i++){
-                            newList[i]={
-                                id:i,
-                                cellName:list[i],
-                                value:''
+                        var list = resData.data.columnList;
+                        var newList = [];
+                        for (var i = 0; i < list.length; i++) {
+                            newList[i] = {
+                                id: i,
+                                cellName: list[i],
                             }
+                            that.ruleForm[list[i]] = '';
                         }
-                        console.log(newList);
-                        that.ruleForm.tables = newList;
+                        that.formTable = newList;
                     } else {
                         console.log(resData.error);
                     }
@@ -56,11 +55,28 @@ new Vue({
             })
         },
         submitForm(formName) {
-            var that=this;
+            var that = this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    alert('submit!');
-                    console.log(that.ruleForm.tables);
+                    var data = that.ruleForm;
+                    $.ajax({
+                        type: 'Post',
+                        url: FRONT_URL + "/form/putFormData",
+                        data: JSON.stringify(data),
+                        dataType: 'json',
+                        headers: {'Content-Type': 'application/json'},
+                        success: function (resData) {
+                            if (resData.retCode === API_SUCCEED_CODE) {
+                                alert("ok");
+                            } else {
+                                console.log(resData.error);
+                            }
+                        },
+                        error: function (xhr, errorType, error) {
+                        },
+                        complete: function () {
+                        }
+                    })
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -70,6 +86,5 @@ new Vue({
         resetForm(formName) {
             this.$refs[formName].resetFields();
         },
-
     }
 })
