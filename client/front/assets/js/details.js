@@ -2,7 +2,7 @@ Vue.component('form-table', {
     props: ['list', 'tables'],
     template:
         ' <el-form-item :label="list.cellName" prop="tableContent">' +
-        ' <el-input v-model="tables[list.cellName]" ></el-input>\n' +
+        ' <el-input v-model="tables[list.cellName]" placeholder="请填写内容" ></el-input>\n' +
         ' </el-form-item> '
 });
 new Vue({
@@ -59,6 +59,12 @@ new Vue({
             var formId = dt.getQueryString("formId");
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    $.each(that.ruleForm, function (idx, obj) {
+                        if (obj === '') {
+                            that.alertShow();
+                            return false;
+                        }
+                    });
                     var data = {
                         "formId": formId,
                         "dataContent": JSON.stringify(that.ruleForm)
@@ -89,6 +95,13 @@ new Vue({
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();
+        },
+        alertShow() {
+            this.$notify({
+                title: '警告',
+                message: '必须全部填写才可以提交',
+                type: 'warning'
+            });
         },
     }
 })
