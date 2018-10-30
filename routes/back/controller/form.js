@@ -7,4 +7,4 @@ const storage = require(appRoot+'/common/configs/multer-config.js');
 module.exports =  router.routes();
 
 const upload = multer({storage:storage}).single('excelForm');
-router.use('/importForm',upload,form.importForm);
+router.post('/importForm',upload,form.importForm);

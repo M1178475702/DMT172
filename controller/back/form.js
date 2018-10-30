@@ -4,7 +4,7 @@ const xl = require('xlsx');
 const Models = require(path.join(appRoot, '/models/index'));
 const Sequelize = Models.sequelize;
 const Constant = require(path.join(appRoot, '/common/configs/constant'));
-const formHelper = require(appRoot + '/common/helpers/form/index');
+const {setStartJob,setEndJob} = require(appRoot + '/common/helpers/form/index');
 
 module.exports={
     importForm : async (ctx,next)=>{
@@ -29,22 +29,24 @@ module.exports={
                     let now = new Date();
                     //进行任务设置（此次为初始化）
                     if (beginTime > now) {
-                        formHelper.setStartJob(formId, beginTime, now);
+                       setStartJob(formId, beginTime, now);
                     }
-                    formHelper.setEndJob(formId, endTime, now);
+                    setEndJob(formId, endTime, now);
                     body.prompt = "上传成功";
                     body.retCode = Constant.API_SUCCEED_CODE;
                     ctx.body = body;
-
             }
             else{
-                body.prompt = "表单解析错误";
-                body.retCode = Constant.API_SUCCEED_CODE;
+                body.prompt = "文件解析错误";
+                body.retCode = Constant.API_DATA_WRONG_CODE;
                 ctx.body = body;
             }
         }
         catch (e) {
-            
+            body.prompt = "服务器";
+            body.error = e.message;
+            body.retCode = Constant.API_SERVER_WRONG_CODE;
+            ctx.body = body;
         }
     }
 };
