@@ -70,7 +70,8 @@ module.exports = {
 
     putFormData: async (ctx, next) => {
         const body = JSON.parse(JSON.stringify(Constant.API_RESULT_MODEL));
-        const {formId, stuNo, dataContent} = ctx.request.body;
+        const {formId, dataContent} = ctx.request.body;
+        const stuNo = ctx.session.stuNo;
         try {
             await Sequelize.transaction(async (t) => {
                 const searchObj = {
