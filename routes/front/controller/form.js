@@ -6,3 +6,5 @@ module.exports =  router.routes();
 router.get('/getFormList',form.getFormList);
 
 router.get('/getUserForm',form.getUserForm);
+
+router.post('/putFormData',form.putFormData);
