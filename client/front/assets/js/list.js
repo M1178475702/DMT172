@@ -31,7 +31,7 @@ new Vue({
             })
         },
         fillList: function (num) {
-            location.replace('/ront/details?formId=' + num);
+            location.replace('/front/details?formId=' + num);
         }
     }
 });
