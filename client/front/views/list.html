@@ -10,23 +10,30 @@
 </head>
 <body>
 <div id='list' v-cloak>
+    <p class="list-p">Hi,<span id="list-span"></span>同学</p>
     <el-table
             :data="tableData"
             stripe
-            style="width: 100%">
+            size="medium"
+            height="70vh">
         <el-table-column
+                fit="false"
+                min-width="10%"
+                align="center"
                 prop="formId"
                 label="序号"
-                width="100%">
+        >
         </el-table-column>
         <el-table-column
                 prop="formName"
                 label="名称"
-                width="300%">
+        >
         </el-table-column>
         <el-table-column
                 label="开始时间"
-                width="300%">
+                min-width="50%"
+                align="center"
+        >
             <template slot-scope="scope">
                 <i class="el-icon-time"></i>
                 <span style="margin-left: 10px">${ scope.row.beginTime }</span>
@@ -34,7 +41,9 @@
         </el-table-column>
         <el-table-column
                 label="结束时间"
-                width="300%">
+                min-width="50%"
+                align="center"
+        >
             <template slot-scope="scope">
                 <i class="el-icon-time"></i>
                 <span style="margin-left: 10px">${scope.row.endTime}</span>
@@ -42,13 +51,15 @@
         </el-table-column>
         <el-table-column
                 label="状态"
+                min-width="25%"
+                align="center"
         >
             <template slot-scope="scope">
                 <div v-if="scope.row.formStatus===1">
-                    <el-button type="primary" round @click="fillList(scope.row.formId)">填写</el-button>
+                    <el-button type="primary" round @click="fillList(scope.row.formId)" size="small">填写</el-button>
                 </div>
                 <div v-else>
-                    <el-button type="danger" round disabled>禁用</el-button>
+                    <el-button type="danger" round disabled size="small">禁用</el-button>
                 </div>
             </template>
         </el-table-column>
@@ -57,7 +68,7 @@
 <script src="/public/vendors/jQuery/jquery-3.3.1.min.js"></script>
 <script src="/public/vendors/less/less-3.8.1.js"></script>
 <script src="/public/vendors/vue/vue-2.5.15.js"></script>
-<script src="//unpkg.com/element-ui/lib/index.js"></script>
+<script src="/public/vendors/element/index.js"></script>
 <script src="/public/dreamtouch/js/comman.js"></script>
 <script src="/front/js/list.js"></script>
 </body>

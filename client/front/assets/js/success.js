@@ -3,7 +3,7 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 c = canvas.getContext('2d');
 
-window.addEventListener('resize', function(){
+window.addEventListener('resize', function () {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
@@ -30,7 +30,7 @@ window.addEventListener("touchmove",
     }
 )
 
-function Circle(x, y, radius, vx, vy, rgb, opacity, birth, life){
+function Circle(x, y, radius, vx, vy, rgb, opacity, birth, life) {
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -41,14 +41,14 @@ function Circle(x, y, radius, vx, vy, rgb, opacity, birth, life){
     this.life = life;
     this.opacity = opacity;
 
-    this.draw = function() {
+    this.draw = function () {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, Math.PI * 2, false);
-        c.fillStyle = 'rgba(' + rgb +','+ this.opacity +')';
+        c.fillStyle = 'rgba(' + rgb + ',' + this.opacity + ')';
         c.fill();
     }
 
-    this.update = function(){
+    this.update = function () {
         if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
             this.vx = -this.vx;
         }
@@ -60,16 +60,16 @@ function Circle(x, y, radius, vx, vy, rgb, opacity, birth, life){
         this.x += this.vx;
         this.y += this.vy;
 
-        this.opacity = 1- (((frame - this.birth) * 1) / this.life);
+        this.opacity = 1 - (((frame - this.birth) * 1) / this.life);
 
-        if (frame > this.birth + this.life){
-            for (var i = 0; i < circleArray.length; i++){
-                if (this.birth == circleArray[i].birth && this.life == circleArray[i].life){
+        if (frame > this.birth + this.life) {
+            for (var i = 0; i < circleArray.length; i++) {
+                if (this.birth == circleArray[i].birth && this.life == circleArray[i].life) {
                     circleArray.splice(i, 1);
                     break;
                 }
             }
-        } else{
+        } else {
             this.draw();
         }
     }
@@ -88,7 +88,7 @@ var colorArray = [
     '343,81,45'
 ]
 
-function drawCircles(){
+function drawCircles() {
     for (var i = 0; i < 6; i++) {
         var radius = Math.floor(Math.random() * 4) + 2;
         var vx = (Math.random() * 2) - 1;
@@ -102,11 +102,12 @@ function drawCircles(){
 }
 
 var frame = 0;
+
 function animate() {
     requestAnimationFrame(animate);
     frame += 1;
     c.clearRect(0, 0, innerWidth, innerHeight);
-    for (let i = 0; i < circleArray.length; i++ ){
+    for (let i = 0; i < circleArray.length; i++) {
         circleArray[i].update();
     }
 
@@ -128,10 +129,10 @@ for (let j = 1; j < 150; j++) {
 
 $(function () {
     setInterval(function () {
-        var time=$('#success-s').text()-1;
+        var time = $('#success-s').text() - 1;
         $('#success-s').text(time);
-    },1000)
+    }, 1000)
     setTimeout(function () {
         location.replace('/front/list');
-    },3000)
+    }, 5000)
 })

@@ -10,11 +10,11 @@ new Vue({
             rules: {
                 stuNo: [
                     {required: true, message: '请输入学号', trigger: 'blur'},
-                    {min: 10, max: 11, message: '长度在10个字符', trigger: 'blur'},
+                    {min: 10, max: 11, message: '请输入正确学号', trigger: 'blur'},
                 ],
                 stuName: [
                     {required: true, message: '请输入姓名', trigger: 'blur'},
-                    {min: 2, max: 5, message: '长度在2到5个字符', trigger: 'blur'},
+                    {min: 2, max: 5, message: '请输入正确姓名', trigger: 'blur'},
                 ],
             }
 
@@ -58,7 +58,7 @@ new Vue({
                         location.replace('/front/list');
                     }
                     else {
-                        alert("登陆失败")
+                       location.replace('/front/falseLoad')
                     }
                 },
                 error: function (xhr, errorType, error) {

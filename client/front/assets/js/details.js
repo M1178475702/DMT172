@@ -2,7 +2,7 @@ Vue.component('form-table', {
     props: ['list', 'tables'],
     template:
         ' <el-form-item :label="list.cellName" prop="tableContent">' +
-        ' <el-input v-model="tables[list.cellName]" placeholder="请填写内容" ></el-input>\n' +
+        ' <el-input v-model="tables[list.cellName]" placeholder="请填写内容" prefix-icon="el-icon-edit"></el-input>\n' +
         ' </el-form-item> '
 });
 new Vue({
@@ -54,21 +54,29 @@ new Vue({
                 }
             })
         },
-        submitForm(formName) {
+        submitForm: function (formName) {
+            var falg = false;
             var that = this;
             var formId = dt.getQueryString("formId");
+            $.each(that.ruleForm, function (idx, obj) {
+                if (obj === '') {
+                    that.alertShow();
+                    falg = true;
+                    return false;
+                }
+            })
+            if (falg === true) {
+                return false;
+            }
+
             this.$refs[formName].validate((valid) => {
+
                 if (valid) {
-                    $.each(that.ruleForm, function (idx, obj) {
-                        if (obj === '') {
-                            that.alertShow();
-                            return false;
-                        }
-                    });
                     var data = {
                         "formId": formId,
                         "dataContent": JSON.stringify(that.ruleForm)
                     }
+                    console.log(data)
                     $.ajax({
                         type: 'Post',
                         url: FRONT_URL + "/form/putFormData",
@@ -77,7 +85,7 @@ new Vue({
                         headers: {'Content-Type': 'application/json'},
                         success: function (resData) {
                             if (resData.retCode === API_SUCCEED_CODE) {
-                                alert("ok");
+                                location.replace('/front/success')
                             } else {
                                 console.log(resData.error);
                             }
@@ -93,8 +101,16 @@ new Vue({
                 }
             });
         },
-        resetForm(formName) {
-            this.$refs[formName].resetFields();
+        resetForm() {
+            // var that=this;
+            // $.each(that.ruleForm, function (idx, obj) {
+            //     console.log(that.ruleForm)
+            //     alert(idx);
+            //     obj='';
+            //     }
+            // )
+            // that.ruleForm['序号']='';
+            $('input').val('');
         },
         alertShow() {
             this.$notify({
