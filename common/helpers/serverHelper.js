@@ -6,7 +6,7 @@ exports.errorHandler = async (ctx, next) => {
     try {
         await next();
     } catch (err) {
-        console.error(err);
+        //console.error(err);
         ctx.response.status = err.statusCode || err.status || 500;
         ctx.response.body = {
             retCode: -500,
@@ -91,7 +91,11 @@ exports.widthString = function widthString(strArr, width) {
 exports.loginAuth = async (ctx,next)=>{
     const session = ctx.session;
     if(session.userId||ctx.url === "/front/" ||ctx.url === "/front/index"||ctx.url === "/front/api/auth/login"
-    ||"/front/falseLoad")
+    ||ctx.url === "/front/falseLoad")
+    {
         return next();
+    }
+
+
     ctx.redirect("/front/");
 };

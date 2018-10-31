@@ -39,9 +39,9 @@ function logger(opts) {
         }
         catch (err) {
             console.error(err);
-            await createLog(ctx.url, ctx.ip, ctx.status.toString(), ctx.body.prompt ? ctx.body.prompt : '默认', err);
+            await createLog(ctx.url, ctx.ip, ctx.status.toString(), ctx.body ? ctx.body.prompt : '默认', err);
         }
-        await createLog(ctx.method.toUpperCase() + ' ' + ctx.url, ctx.ip, ctx.status.toString(), ctx.body.prompt ? ctx.body.prompt : '默认');
+        await createLog(ctx.method.toUpperCase() + ' ' + ctx.url, ctx.ip, ctx.status.toString(), ctx.body ? ctx.body.prompt : '默认');
     };
 
     function clearBuffer() {

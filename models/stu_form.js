@@ -1,5 +1,4 @@
 /* jshint indent: 2 */
-const formHelper = require(appRoot + '/common/helpers/form');
 
 module.exports = function (sequelize, DataTypes) {
     return sequelize.define('stuForm', {
