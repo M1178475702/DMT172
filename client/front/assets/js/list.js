@@ -26,6 +26,7 @@ new Vue({
                 error: function (xhr, errorType, error) {
                 },
                 complete: function () {
+                    $('#list-span').text(sessionStorage.stuName);
                 }
 
             })
@@ -35,4 +36,3 @@ new Vue({
         }
     }
 });
-document.write("Hi," + "<span style='color: #409EFF'>" + sessionStorage.stuName + "</span>" + "同学请尽快填写表格！！！");

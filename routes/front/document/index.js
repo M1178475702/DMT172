@@ -30,3 +30,9 @@ router.get('/success', async (ctx, next) => {
         title: 'nice'
     })
 });
+router.get('/falseLoad', async (ctx, next) => {
+    await ctx.render('falseLoad', {
+        layout: null,
+        title: '登录失败'
+    })
+});
