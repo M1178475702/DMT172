@@ -30,7 +30,6 @@ exports.assemble = (module, filePath, basename, callback) => {
     callback(module);
 };
 
-
 //定制promise写文件
 exports.writeFile = function (fileName, data,opt) {
     return new Promise(function (resolve, reject) {
@@ -89,11 +88,11 @@ exports.widthString = function widthString(strArr, width) {
 };
 
 exports.loginAuth = async (ctx,next)=>{
+    let privUrls = ["/front/","/front/index","/front/api/auth/login","/front/falseLoad"];
+    let url = ctx.url;
+    let isPriv = privUrls.indexOf(url) !== -1;
     const session = ctx.session;
-    if(session.userId||ctx.url === "/front/" ||ctx.url === "/front/index"||ctx.url === "/front/api/auth/login"
-    ||ctx.url === "/front/falseLoad")
-    {
+    if(session.userId || isPriv)
         return next();
-    }
     ctx.redirect("/front/");
 };
