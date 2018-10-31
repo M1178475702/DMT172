@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const xl = require('xlsx');
 const schedule = require('node-schedule');
-const Models = require("F:\\web项目\\DMT172\\models\\index.js");
+const Models = require(appRoot + "/models/index.js");
 
 
 const formEndJobArr = new Set();

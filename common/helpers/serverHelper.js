@@ -95,7 +95,5 @@ exports.loginAuth = async (ctx,next)=>{
     {
         return next();
     }
-
-
     ctx.redirect("/front/");
 };

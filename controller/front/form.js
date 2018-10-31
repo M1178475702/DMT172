@@ -83,14 +83,16 @@ module.exports = {
                 const isExist = await Models.stuFormData.findOne(searchObj);
                 if (isExist) {
                     await isExist.update({
-                        dataContent: dataContent
+                        dataContent: dataContent,
+                        putTime:new Date()
                     });
                 }
                 else {
                     const createObj = {
                         formId: formId,
                         stuNo: stuNo,
-                        dataContent: dataContent
+                        dataContent: dataContent,
+                        putTime:new Date()
                     };
                     await Models.stuFormData.create(createObj);
                 }
